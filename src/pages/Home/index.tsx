@@ -1,13 +1,14 @@
-import React from 'react';
-import Header from '../../components/Header';
+import React from "react";
+import BooksList from "../../components/BooksList";
+import Header from "../../components/Header";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <Header/>
-      <h1>Home</h1>
+      <Header />
+      <BooksList />
     </Container>
   );
 };
