@@ -1,11 +1,5 @@
-import { setCookie, destroyCookie, parseCookies } from "nookies";
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { setCookie, destroyCookie } from "nookies";
+import { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { api } from "./../service/apiClient";
@@ -32,12 +26,12 @@ type AuthContextData = {
   user: User;
 };
 export const AuthContext = createContext({} as AuthContextData);
-const navigate = useNavigate();
 
 export function signOut() {
+  const navigate = useNavigate();
   destroyCookie(undefined, "ioasys.token");
   destroyCookie(undefined, "ioasys.refreshToken");
-  navigate('/login');
+  navigate("/login");
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -52,7 +46,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         password,
       });
       /* console.log(response.data); */
-      const { token, refreshToken } = response.data;
+      const { token, refreshToken, name, birthdate, gender, id } =
+        response.data;
       setCookie(undefined, "ioasys.token", token, {
         maxAge: 60 * 60 * 15, // 15 minutes
         path: "/",
@@ -61,9 +56,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         maxAge: 60 * 60 * 24 * 30, // 30 days
         path: "/",
       });
-            /* setUser({ email, type, permissions }); */
+      setUser({ name, email, birthdate, gender, id });
 
-      api.defaults.headers["Authorization"] = `Bearer ${token}`;         
+      api.defaults.headers["Authorization"] = `Bearer ${token}`;
       navigate("/");
     } catch (error) {
       console.log(error);
