@@ -1,6 +1,6 @@
 import { setCookie, destroyCookie } from "nookies";
 import { createContext, ReactNode, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 import { api } from "./../service/apiClient";
 
@@ -27,13 +27,14 @@ type AuthContextData = {
 };
 export const AuthContext = createContext({} as AuthContextData);
 
+
 export function signOut() {
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
   destroyCookie(undefined, "ioasys.token");
   destroyCookie(undefined, "ioasys.refreshToken");
-  navigate("/login");
+  
+  
 }
-
 export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
   const [user, setUser] = useState<User>();
@@ -57,8 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       setUser({ name, email, birthdate, gender, id });
 
-      /* api.defaults.headers["Authorization"] = `Bearer ${authorization}`; */
-      api.defaults.headers["Authorization"] = `${authorization}`;
+      api.defaults.headers["Authorization"] = `Bearer ${authorization}`;
       navigate("/");
     } catch (error) {
       console.log(error);

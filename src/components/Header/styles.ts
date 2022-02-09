@@ -17,7 +17,7 @@ export const Container = styled.header`
       width: 12.4rem;
     }
     .infos {
-      width: 14rem;
+      width: 18rem;
       height: 100%;
       display: flex;
       flex-direction: row;

@@ -25,7 +25,6 @@ export function setupAPIClient(ctx = undefined) {
     },
     (error: AxiosError) => {
       if (error.response.status === 401) {
-        console.log(error.response);
         if (
           error.response.data?.message === "Não autorizado." ||
           error.response.data?.message === "Usuário ou senha inválida." ||

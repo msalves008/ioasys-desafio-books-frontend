@@ -16,7 +16,6 @@ export function BookDetailsModal({
   onRequestClose,
 }: BookDetailsModalProps) {
   const { book } = useContext(BookDetailsContext);
-  console.log(book.imageUrl);
   return (
     <Modal
       isOpen={isOpen}

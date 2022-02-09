@@ -1,12 +1,13 @@
-import { useState, useContext } from "react";
-import Header from "../../components/Header";
+import { useState, useContext, useEffect } from "react";
+import { Header } from "../../components/Header";
 import { useGetAllBooks } from "../../hooks/useGetAllBooks";
 import { CardBook } from "../../components/CardBook";
-import { BookDetailsContext,} from "../../contexts/BookDetailsContext";
-
+import { BookDetailsContext } from "../../contexts/BookDetailsContext";
 import { Container, Footer } from "./styles";
 import backIcon from "../../assets/backIcon.svg";
 import nextIcon from "../../assets/nextIcon.svg";
+import { useNavigate } from "react-router-dom";
+import {parseCookies} from 'nookies'
 
 interface ListBooksProps {
   data: Array<BookProps>;
@@ -28,21 +29,31 @@ interface BookProps {
   published: number;
   id: string;
 }
-interface HomeProps{
-  onOpenNewTransactionModal: ()=> void
+interface HomeProps {
+  onOpenNewTransactionModal: () => void;
 }
 
-export function Home({onOpenNewTransactionModal}:HomeProps) {
+export function Home({ onOpenNewTransactionModal }: HomeProps) {
+
   const BookContext = useContext(BookDetailsContext);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    let cookies = parseCookies(undefined);
+    console.log(cookies["ioasys.token"]);
+    if (!cookies["ioasys.token"]) {
+      navigate("/login");
+    }
+  }, []);
 
   function handleBookDetails(book: BookProps) {
     onOpenNewTransactionModal();
     BookContext.setBook(book);
   }
 
-  function handlePreviewPage(){
-    if(currentPage > 1){
+  function handlePreviewPage() {
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   }
@@ -58,10 +69,9 @@ export function Home({onOpenNewTransactionModal}:HomeProps) {
   if (!data) return <div>Carregando Dados.....</div>;
   return (
     <Container>
-      <Header />
+      <Header/>
       <div className="cards">
         {data.data.map((b) => {
-          console.log(b);
           return (
             <CardBook
               id={b.id}
@@ -85,7 +95,7 @@ export function Home({onOpenNewTransactionModal}:HomeProps) {
             <img src={backIcon} alt="Página anterior" />
           </button>
           <button onClick={handleNextPage}>
-          <img src={nextIcon} alt="Proxima página" />
+            <img src={nextIcon} alt="Proxima página" />
           </button>
         </div>
       </Footer>

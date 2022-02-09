@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { BookDetailsModal } from "./components/BookDetailsModal";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, AuthContext } from "./contexts/AuthContext";
 import {
   BookDetailsContext,
   BookDetailsProvider,
@@ -15,6 +15,7 @@ Modal.setAppElement("#root");
 
 function App() {
   const BookContext = useContext(BookDetailsContext);
+  const authContext = useContext(AuthContext);
   const [isBookDetailsModalOpen, setIsBookDetailsModalOpen] = useState(false);
 
   function handleOpenBookDetailsModal() {
