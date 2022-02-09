@@ -16,7 +16,6 @@ export const Container = styled.div`
     align-items: center;
     .card-image {
       height: 90%;
-      background: url(IMG_0360.png);
       filter: drop-shadow(0px 6px 9px rgba(0, 0, 0, 0.15));
     }
     .card-content {
@@ -39,6 +38,10 @@ export const Container = styled.div`
         font-size: 12px;
         line-height: 20px;
         color: var(--pink-800);
+        height: 3rem;
+        white-space: wrap;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
       }
       .card-info {
         height: 50%;
