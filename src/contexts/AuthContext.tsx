@@ -45,8 +45,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         email,
         password,
       });
-      console.log(response.data);
-      console.log(response.headers);
       const { name, birthdate, gender, id } = response.data;
       const {authorization, 'refresh-token': refreshToken } = response.headers;
       setCookie(undefined, "ioasys.token", authorization, {
@@ -59,7 +57,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       setUser({ name, email, birthdate, gender, id });
 
-      api.defaults.headers["Authorization"] = `Bearer ${authorization}`;
+      /* api.defaults.headers["Authorization"] = `Bearer ${authorization}`; */
+      api.defaults.headers["Authorization"] = `${authorization}`;
       navigate("/");
     } catch (error) {
       console.log(error);

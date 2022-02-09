@@ -25,19 +25,25 @@ export function setupAPIClient(ctx = undefined) {
     },
     (error: AxiosError) => {
       if (error.response.status === 401) {
+        console.log(error.response);
         if (
           error.response.data?.message === "Não autorizado." ||
-          error.response.data?.message === "Usuário ou senha inválida."
+          error.response.data?.message === "Usuário ou senha inválida." ||
+          error.response.statusText === "Unauthorized"
         ) {
+
           cookies = parseCookies(ctx);
           const { "ioasys.refreshToken": refreshToken } = cookies;
           const originalConfig = error.config;
+          const bodyRefreshToken = {
+            refreshToken:refreshToken,
+          }
           if (!isRefreshing) {
             isRefreshing = true;
 
             api
               .post("/auth/refresh-token", {
-                refreshToken,
+                bodyRefreshToken,
               })
               .then((response) => {
                 const { token } = response.data;
