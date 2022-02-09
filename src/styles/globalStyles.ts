@@ -126,4 +126,43 @@ export const GlobalStyles = createGlobalStyle`
       filter: brightness(0.6);
     }
   }
+  @media(max-width: 1024px){
+    .ReactModal__Html--open,
+.ReactModal__Body--open {
+  overflow: hidden; 
+}
+
+    .react-modal-content {
+      width: 100%;
+      max-width: 48rem;
+      height: 100%;
+      max-height: 35rem;
+    }
+  }
+  @media(max-width: 425px){
+    width: 100vw;
+    height: 100vh;
+    .react-modal-content {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: scroll;
+
+    }
+    .react-modal-content::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 3rem;
+    }
+    .react-modal-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .react-modal-content::-webkit-scrollbar-thumb {
+      height: 2rem;
+      width: 0.25rem;
+      max-height: 1rem !important;
+      background: var(--pink-800);
+      border-radius: 1.8rem;
+    }
+  }
+
 `;

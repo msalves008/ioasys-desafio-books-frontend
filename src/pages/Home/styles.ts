@@ -15,12 +15,21 @@ export const Container = styled.div`
     width: 100vw;
     max-width: 1130px;
     height: 32rem;
-    /*    width: 100%;
-    height: 100%; */
+    align-items: center;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
     grid-template-rows: repeat(3, 1fr);
-    gap: 1rem;
+    grid-row-gap: 1rem;
+    margin: auto;
+  }
+  @media (max-width: 1024px) {
+    .cards {
+      width: 90%;
+      align-items: center;
+      border: 1px solid black;
+      margin: 0;
+      grid-row-gap: 0 !important;
+    }
   }
 `;
 
@@ -47,5 +56,10 @@ export const Footer = styled.footer`
       border-radius: 50%;
       background-color: transparent;
     }
+  }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+    position: relative;
   }
 `;

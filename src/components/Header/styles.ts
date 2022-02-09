@@ -53,4 +53,34 @@ export const Container = styled.header`
       }
     }
   }
+  @media(max-width: 1024px) {
+    .wrapper-header{
+      width: 90%;
+      height: 4.5rem;
+      img{
+        width: 10rem;
+      }
+    }
+  }
+  @media(max-width: 768px) {
+    .wrapper-header{
+      width: 90%;
+      height: 4.5rem;
+      img{
+        width: 10rem;
+      }
+    }
+  }
+  @media(max-width: 4258px) {
+    .wrapper-header{
+      img{
+        width: 10rem;
+      }
+      .infos{
+        span, strong{
+          display: none;
+        }
+      }
+    }
+  }
 `;

@@ -2,8 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: scroll;
   > img {
     width: 100%;
     max-width: 21.8rem;
@@ -11,7 +13,6 @@ export const Container = styled.div`
   .wrapper-book-details {
     margin-left: 3rem;
     width: 40%;
-    overflow-y: scroll;
     padding: 0.3rem;
     h1 {
       width: 100%;
@@ -67,18 +68,46 @@ export const Container = styled.div`
       }
     }
   }
-  .wrapper-book-details::-webkit-scrollbar {
-    width: 0.4rem;
-    height: 3rem;
+  @media (min-width: 1024px) {
+    background-color: red;
+    .wrapper-book-details::-webkit-scrollbar {
+      width: 0.4rem;
+      height: 3rem;
+    }
+    .wrapper-book-details::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .wrapper-book-details::-webkit-scrollbar-thumb {
+      height: 2rem;
+      width: 0.25rem;
+      max-height: 1rem !important;
+      background: var(--pink-800);
+      border-radius: 1.8rem;
+    }
   }
-  .wrapper-book-details::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .wrapper-book-details::-webkit-scrollbar-thumb {
-    height: 2rem;
-    width: .25rem;
-    max-height: 1rem !important;
-    background: var(--pink-800);
-    border-radius: 1.8rem;
+  @media (max-width: 425px) {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: hidden;
+
+    > img {
+      max-width: 15rem;
+    }
+    .wrapper-book-details {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0 auto;
+      h1 {
+        padding-top: 1rem;
+      }
+
+      .wrapper-book-review {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 `;

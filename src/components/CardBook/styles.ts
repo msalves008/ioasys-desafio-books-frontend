@@ -7,7 +7,6 @@ export const Container = styled.div`
 
   .card {
     text-align: left;
-
     border: none;
     background: #ffffff;
     box-shadow: 0px 6px 24px rgba(84, 16, 95, 0.13);
@@ -58,6 +57,14 @@ export const Container = styled.div`
           color: var(--gray-300);
         }
       }
+    }
+  }
+  @media (max-width: 1024px) {
+    width: 80%;
+    margin: 0;
+    .card{
+      width: 15rem;
+      margin: 0;
     }
   }
 `;
