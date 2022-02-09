@@ -1,8 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../../components/Header";
 import { useGetAllBooks } from "../../hooks/useGetAllBooks";
-import { Container } from "./styles";
+import { Container, Footer } from "./styles";
 import { CardBook } from "../../components/CardBook";
+import backIcon from "../../assets/backIcon.svg";
+import nextIcon from "../../assets/nextIcon.svg";
 
 interface ListBooksProps {
   data: Array<BookProps>;
@@ -26,9 +28,23 @@ interface BookProps {
 }
 
 export function Home() {
-  const { data } = useGetAllBooks<ListBooksProps>("/books?page=1&amount=12");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function handlePreviewPage(){
+    if(currentPage > 1){
+      setCurrentPage(currentPage - 1);
+    }
+  }
+  function handleNextPage() {
+    if (currentPage < data.totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  }
+
+  const { data } = useGetAllBooks<ListBooksProps>(
+    `/books?page=${currentPage}&amount=12`
+  );
   if (!data) return <div>Carregando Dados.....</div>;
-  console.log(data);
   return (
     <Container>
       <Header />
@@ -48,6 +64,19 @@ export function Home() {
           );
         })}
       </div>
+      <Footer>
+        <div className="pagination">
+          <span>
+            Página {currentPage} de {Math.round(data.totalPages)}
+          </span>
+          <button onClick={handlePreviewPage}>
+            <img src={backIcon} alt="Página anterior" />
+          </button>
+          <button onClick={handleNextPage}>
+          <img src={nextIcon} alt="Proxima página" />
+          </button>
+        </div>
+      </Footer>
     </Container>
   );
 }

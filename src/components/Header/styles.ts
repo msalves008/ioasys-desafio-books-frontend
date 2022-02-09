@@ -40,7 +40,6 @@ export const Container = styled.header`
         border-radius: 50%;
         border: 2px solid rgba(51, 51, 51, 0.2);
         box-sizing: border-box;
-        transform: matrix(-1, 0, 0, 1, 0, 0);
         background-color: transparent;
         display: flex;
         justify-content: center;

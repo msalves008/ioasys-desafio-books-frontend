@@ -1,4 +1,5 @@
 import { Container } from "./styles";
+import unknownBook from "../../assets/unknown-book.png";
 
 type CardBookProps = {
   id: string;
@@ -22,12 +23,18 @@ export function CardBook({
   return (
     <Container>
       <div className="card" key={id}>
-        <img className="card-image" src={bookImage} alt={title} />
+        {bookImage ? (
+          <img className="card-image" src={bookImage} alt={title} />
+        ) : (
+          <img className="card-image" src={unknownBook} alt={title} />
+        )}
         <div className="card-content">
           <h3 className="card-title">{title}</h3>
-          <h3 className="card-author">{author.map(a =>(
-            <span>{a}</span>
-          ))}</h3>
+          <h3 className="card-author">
+            {author.map((a) => (
+              <span>{a}</span>
+            ))}
+          </h3>
           <div className="card-info">
             <p className="card-pageCount">{pageCount} páginas</p>
             <p className="card-publisher">{publisher}</p>
