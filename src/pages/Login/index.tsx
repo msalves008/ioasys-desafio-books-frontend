@@ -25,13 +25,13 @@ export function Login() {
         <img src={logo} alt="Logo Ioasys" />
         <input
           type="email"
-          placeholder="books@ioasys.com.br"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <div className="group-password">
           <input
             type="password"
-            placeholder="*********"
+            placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit" onClick={handleSignIn}>

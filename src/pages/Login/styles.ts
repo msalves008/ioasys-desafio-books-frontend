@@ -28,6 +28,10 @@ export const Container = styled.div`
       height: 3.75rem;
       width: 23rem;
       padding-left: 1rem;
+      color: #fff;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1rem;
     }
     input::placeholder {
       font-style: normal;
