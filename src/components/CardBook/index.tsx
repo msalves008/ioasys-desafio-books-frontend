@@ -9,6 +9,7 @@ type CardBookProps = {
   publisher: string;
   publishedDate: number;
   bookImage: string;
+  onclick: () => void;
 };
 
 export function CardBook({
@@ -19,10 +20,11 @@ export function CardBook({
   publisher,
   publishedDate,
   bookImage,
+  onclick,
 }: CardBookProps) {
   return (
     <Container>
-      <div className="card" key={id}>
+      <button onClick={onclick}className="card" key={id}>
         {bookImage ? (
           <img className="card-image" src={bookImage} alt={title} />
         ) : (
@@ -41,7 +43,7 @@ export function CardBook({
             <p className="card-published">Publicado em {publishedDate}</p>
           </div>
         </div>
-      </div>
+      </button>
     </Container>
   );
 }

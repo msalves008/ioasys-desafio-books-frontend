@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Header from "../../components/Header";
 import { useGetAllBooks } from "../../hooks/useGetAllBooks";
-import { Container, Footer } from "./styles";
 import { CardBook } from "../../components/CardBook";
+import { BookDetailsContext,} from "../../contexts/BookDetailsContext";
+
+import { Container, Footer } from "./styles";
 import backIcon from "../../assets/backIcon.svg";
 import nextIcon from "../../assets/nextIcon.svg";
 
@@ -26,9 +28,18 @@ interface BookProps {
   published: number;
   id: string;
 }
+interface HomeProps{
+  onOpenNewTransactionModal: ()=> void
+}
 
-export function Home() {
+export function Home({onOpenNewTransactionModal}:HomeProps) {
+  const BookContext = useContext(BookDetailsContext);
   const [currentPage, setCurrentPage] = useState(1);
+
+  function handleBookDetails(book: BookProps) {
+    onOpenNewTransactionModal();
+    BookContext.setBook(book);
+  }
 
   function handlePreviewPage(){
     if(currentPage > 1){
@@ -60,6 +71,7 @@ export function Home() {
               publisher={b.publisher}
               publishedDate={b.published}
               bookImage={b.imageUrl}
+              onclick={() => handleBookDetails(b)}
             />
           );
         })}
