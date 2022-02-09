@@ -50,13 +50,38 @@ export const Container = styled.div`
         border-radius: 2.75rem;
         z-index: 2;
         border: none;
-        
+
         background-color: #fff;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
         line-height: 20px;
         color: var(--pink-800);
+      }
+    }
+  }
+  @media (max-width: 425px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    form {
+      margin-left: 0;
+
+    }
+  }
+  @media (max-width:320px){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    form{
+      width: 20rem;
+      img{
+        width: 10rem;
+      }
+      input,.group-password{
+        width:100%;
       }
     }
   }
