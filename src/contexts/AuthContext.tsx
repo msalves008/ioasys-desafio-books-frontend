@@ -41,14 +41,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
   async function signIn({ email, password }: SignInCredentials) {
     /* console.log(`signIn:  ${email}, ${password}`); */
     try {
-      const response = await api.post("login", {
+      const response = await api.post("/auth/sign-in", {
         email,
         password,
       });
-      /* console.log(response.data); */
-      const { token, refreshToken, name, birthdate, gender, id } =
-        response.data;
-      setCookie(undefined, "ioasys.token", token, {
+      console.log(response.data);
+      console.log(response.headers);
+      const { name, birthdate, gender, id } = response.data;
+      const {authorization, 'refresh-token': refreshToken } = response.headers;
+      setCookie(undefined, "ioasys.token", authorization, {
         maxAge: 60 * 60 * 15, // 15 minutes
         path: "/",
       });
@@ -58,7 +59,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       setUser({ name, email, birthdate, gender, id });
 
-      api.defaults.headers["Authorization"] = `Bearer ${token}`;
+      api.defaults.headers["Authorization"] = `Bearer ${authorization}`;
       navigate("/");
     } catch (error) {
       console.log(error);

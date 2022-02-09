@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { parseCookies, setCookie } from "nookies";
+import { signOut } from "../contexts/AuthContext";
 import { AuthTokenError } from "./errors/AuthTokenErrors";
 
 type FailedRequestQueue = {
@@ -11,9 +12,8 @@ let failedRequestsQueue = Array<FailedRequestQueue>();
 
 export function setupAPIClient(ctx = undefined) {
   let cookies = parseCookies(ctx);
-  console.log(process.env.API_URL);
   const api = axios.create({
-    baseURL: process.env.API_URL,
+    baseURL: "https://books.ioasys.com.br/api/v1",
     headers: {
       Authorization: `Bearer ${cookies["ioasys.token"]}`,
       "Content-Type": "application/json",
@@ -70,7 +70,7 @@ export function setupAPIClient(ctx = undefined) {
                 );
                 failedRequestsQueue = [];
                 if ((process as any).browser) {
-                  /*  signOut(); */
+                   signOut();
                 } else {
                   return Promise.reject(new AuthTokenError());
                 }
@@ -94,7 +94,7 @@ export function setupAPIClient(ctx = undefined) {
         } else {
           // deslogar o usuario
           if ((process as any).browser) {
-            /* signOut(); */
+            signOut();
           }else {
             return Promise.reject(new AuthTokenError());
           }
