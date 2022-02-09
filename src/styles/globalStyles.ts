@@ -134,7 +134,7 @@ export const GlobalStyles = createGlobalStyle`
 
     .react-modal-content {
       width: 100%;
-      max-width: 48rem;
+      max-width: 60rem;
       height: 100%;
       max-height: 35rem;
     }

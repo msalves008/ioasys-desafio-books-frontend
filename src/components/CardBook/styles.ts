@@ -31,15 +31,15 @@ export const Container = styled.div`
       .card-title {
         font-style: normal;
         font-weight: 500;
-        font-size: 14px;
-        line-height: 20px;
+        font-size: 0.87rem;
+        line-height: 1.25rem;
         color: var(--gray-500);
       }
       .card-author {
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
-        line-height: 20px;
+        font-size: 0.87rem;
+        line-height: 1.25rem;
         color: var(--pink-800);
         height: 3rem;
         white-space: wrap;
@@ -52,8 +52,8 @@ export const Container = styled.div`
         p {
           font-style: normal;
           font-weight: normal;
-          font-size: 12px;
-          line-height: 20px;
+          font-size: 0.87rem;
+          line-height: 1.25rem;
           color: var(--gray-300);
         }
       }
@@ -62,9 +62,25 @@ export const Container = styled.div`
   @media (max-width: 1024px) {
     width: 80%;
     margin: 0;
-    .card{
+    .card {
       width: 15rem;
       margin: 0;
     }
+  }
+  @media (max-width: 425px) {
+    .card {
+      .card-content{
+        .card-author {
+          font-size: 0.2rem !important;
+        }
+      }
+    }
+  }
+  @media (max-width: 320px) {
+    width: 100%;
+    .card{
+      width: 100%;
+    }
+    
   }
 `;

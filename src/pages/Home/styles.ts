@@ -26,9 +26,29 @@ export const Container = styled.div`
     .cards {
       width: 90%;
       align-items: center;
-      border: 1px solid black;
       margin: 0;
       grid-row-gap: 0 !important;
+    }
+  }
+
+  @media (max-width: 425px) {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    position: relative;
+    .cards{
+      align-items: center;
+      width: 55%;
+      grid-row-gap: 1rem !important;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  }
+  @media (max-width: 320px){
+    width: 100%;
+    .cards{
+      align-items: center;
+      width: 85%;
     }
   }
 `;
@@ -36,7 +56,7 @@ export const Container = styled.div`
 export const Footer = styled.footer`
   width: 100vw;
   max-width: 1130px;
-  padding-top: 1.5rem;
+  padding: 1.5rem;
   .pagination {
     width: 20%;
     margin-left: auto;
@@ -61,5 +81,16 @@ export const Footer = styled.footer`
   @media (max-width: 1024px) {
     width: 90%;
     position: relative;
+  }
+  @media (max-width: 425px) {
+    width: 90%;
+    .pagination{
+      width: 45%;
+    }
+  }
+  @media (max-width: 320px) {
+    .pagination{
+      width: 70%;
+    }
   }
 `;

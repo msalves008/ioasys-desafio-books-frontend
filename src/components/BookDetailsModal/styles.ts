@@ -69,7 +69,6 @@ export const Container = styled.div`
     }
   }
   @media (min-width: 1024px) {
-    background-color: red;
     .wrapper-book-details::-webkit-scrollbar {
       width: 0.4rem;
       height: 3rem;
