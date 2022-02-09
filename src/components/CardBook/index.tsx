@@ -1,15 +1,17 @@
 import { Container } from "./styles";
 
 type CardBookProps = {
+  id: string;
   title: string;
   author: Array<string>;
-  pageCount: string;
+  pageCount: number;
   publisher: string;
-  publishedDate: string;
+  publishedDate: number;
   bookImage: string;
 };
 
 export function CardBook({
+  id,
   title,
   author,
   pageCount,
@@ -19,7 +21,7 @@ export function CardBook({
 }: CardBookProps) {
   return (
     <Container>
-      <div className="card">
+      <div className="card" key={id}>
         <img className="card-image" src={bookImage} alt={title} />
         <div className="card-content">
           <h3 className="card-title">{title}</h3>

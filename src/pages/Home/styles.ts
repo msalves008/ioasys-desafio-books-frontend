@@ -10,4 +10,17 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  
+  .cards {
+    width: 100vw;
+    max-width: 1130px;
+    height: 32rem;
+ /*    width: 100%;
+    height: 100%; */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+    
+  }
 `;
